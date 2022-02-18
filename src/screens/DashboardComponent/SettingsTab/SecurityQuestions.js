@@ -62,7 +62,7 @@ const SecurityQuestionScreen=(params)=>{
             <td className="f-flex padding" style={{alignSelf:'center',justifyContent:'center'}}>
                 <IconButton onClick={()=>{params.changeModalState(true,4,2,{id:dat.id,value:dat.en,es:dat.es,status:dat.isActive})}}><img src={`${process.env.PUBLIC_URL}/icons/edit.svg`} height={20} width={20}/></IconButton>
 
-                <IconButton onClick={()=>{params.changeModalState(true,6,3,{id:dat.id,value:dat.value})}}><img src={`${process.env.PUBLIC_URL}/icons/delete.svg`} height={20} width={20}/></IconButton>
+                <IconButton onClick={()=>{params.changeModalState(true,12,3,{id:dat.id,value:dat.value})}}><img src={`${process.env.PUBLIC_URL}/icons/delete.svg`} height={20} width={20}/></IconButton>
             </td>
         </tr>:null
             })

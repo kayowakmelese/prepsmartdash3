@@ -393,16 +393,7 @@ const DashboardScreen=(params)=>{
                        })
                    }
                   
-                  {/* {
-                      params.progress===1?
-                     
-                      <Button onClick={()=>{
-                          let cc=count+1;
-                          setCount(cc);
-                          }}>Add more</Button>:null
-                  } */}
-               {/* <TextField variant="outlined" label="Sex type name" className="w-f margin-input" value={sexType} onChange={(e)=>setSexType(e.target.value)}/> */}
-               <br/><br/>
+             <br/><br/>
                <div className="f-flex m-top" style={{ justifyContent: 'right' }}>
                     <Button variant={'text'} className="mrit" onClick={() => params.changeModalState(false,1,1,null)}  style={{marginRight:'5%', padding: '0% 10%',color:colors.primary10 }}>Cancel</Button>
                     <button variant={'contained'} onClick={()=>  
@@ -412,9 +403,7 @@ const DashboardScreen=(params)=>{
                        params.isLoading?<CircularProgress size={15} sx={{color:'white'}}/>:params.progress===1?"ADD":"SAVE"
                     }</button>
                 </div>
-           </div>:<DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>{
-               
-               params.deleteSecurityQuestion(id)}} desc={"Are you sure you want to delete this security question?"}/>
+           </div>:null
         :modalScreen===6? 
            <DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>params.deleteSexType(params.someValue?params.someValue.id:null)} desc={"Are you sure you want to delete this sex type?"}/>:
            modalScreen===3?
@@ -651,7 +640,9 @@ const DashboardScreen=(params)=>{
               
            </div>:modalScreen===11?
            <DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>params.deleteDoseMessage(id)} desc={"Are you sure you want to delete this dose message?"}/>
-:
+:modalScreen===12?<DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>{
+               
+    params.deleteSecurityQuestion(id)}} desc={"Are you sure you want to delete this security question?"}/>:
            <DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>params.deleteSecurityQuestion(id)} desc={"Are you sure you want to delete this security question?"}/>
 
           
