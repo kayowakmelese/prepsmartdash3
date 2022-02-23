@@ -39,13 +39,13 @@ const SecurityQuestionScreen=(params)=>{
         data?<div> <table className="w-f">
         <tr className="eee">
             <th className="w-5 padding">#</th>
-            <th className="w-30">Description(en)</th>
+            <th className="w-20 padding">Description(en)</th>
             
-            <th className="w-30">Description(es)</th>
-            <th className="w-10">Status</th>
-            <th className="w-10">Creation Date</th>
+            <th className="w-20 padding">Description(es)</th>
+            <th className="w-10 padding">Status</th>
+            <th className="w-20 padding">Creation Date</th>
 
-            <th className="w-5">Action</th>
+            <th className="w-5 padding">Action</th>
         </tr>
         {data.map((dat,o)=>{
             let id=dat.id;
@@ -58,7 +58,7 @@ const SecurityQuestionScreen=(params)=>{
                             <Typography color={dat.isActive?'green':'orangered'} variant={'p'} sx={{color:dat.isActive?'green !important':'orangered !important',borderColor:dat.isOnCycle?'green':'red',borderWidth:1}} >{dat.isActive?"Active":"Deactive"}</Typography>
             </p>
                          </td>
-            <td className="padding">{moment(dat.createdDate).format('MMM DD ,HH:MM a')}</td>
+            <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
             <td className="f-flex padding" style={{alignSelf:'center',justifyContent:'center'}}>
                 <IconButton onClick={()=>{params.changeModalState(true,4,2,{id:dat.id,value:dat.en,es:dat.es,status:dat.isActive})}}><img src={`${process.env.PUBLIC_URL}/icons/edit.svg`} height={20} width={20}/></IconButton>
 

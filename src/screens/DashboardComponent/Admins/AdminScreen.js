@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { DataGrid } from '@mui/x-data-grid';
-import { Button, IconButton, Modal, TextField, Typography, Avatar, Box, Tabs, Tab, TabPanel, Select, MenuItem ,CircularProgress} from '@mui/material';
+import { Button, IconButton, Modal, TextField,FormControl,InputLabel, Typography, Avatar, Box, Tabs, Tab, TabPanel, Select, MenuItem ,CircularProgress} from '@mui/material';
 import { colors } from '../../../styles';
 import { AddCircleRounded, ChevronLeft, Add, Search } from '@mui/icons-material';
 import { InputAdornment } from '@material-ui/core';
@@ -151,8 +151,10 @@ const AdminScreen = (params) => {
        </LocalizationProvider>
             </div>
             <div className="f-flex w-20 " style={{justifyContent:'center',alignContent:'center'}}>
-              <Typography variant="p" style={{fontSize:15,alignSelf:'center'}} className="padding" >Status</Typography>
-              <Select className="w-50"
+            <FormControl label="status" className="w-f">
+                        <InputLabel id="demo-simple-select-label">Status</InputLabel>
+
+              <Select className="w-f"
                 labelId="demo-simple-select-label"
                 value={status}
                 label="status"
@@ -162,6 +164,7 @@ const AdminScreen = (params) => {
         <MenuItem value={"true"}>Active</MenuItem>
         <MenuItem value={"false"}>Deactive</MenuItem>
   </Select>
+  </FormControl>
             </div>
           </div>
                       
@@ -192,7 +195,7 @@ const AdminScreen = (params) => {
                                                     <Typography color={dat.isActive ? 'green' : 'orangered'} variant={'p'} sx={{ color: dat.isActive ? 'green !important' : 'orangered !important', borderColor: dat.isActive ? 'green' : 'red', borderWidth: 1 }} >{dat.isActive ? "Active" : "Deactive"}</Typography>
                                                 </p>
                                             </td>
-                                            <td className="padding">{moment(dat.createdDate).format("MMM DD YYYY")}</td>
+                                            <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
 
                                             <td>
                                                 <center>
@@ -218,7 +221,7 @@ const AdminScreen = (params) => {
                                                     <Typography color={dat.isActive ? 'green' : 'orangered'} variant={'p'} sx={{ color: dat.isActive ? 'green !important' : 'orangered !important', borderColor: dat.isActive ? 'green' : 'red', borderWidth: 1 }} >{dat.isActive ? "Active" : "Deactive"}</Typography>
                                                 </p>
                                             </td>
-                                            <td className="padding">{moment(dat.createdDate).format("MMM DD YYYY")}</td>
+                                            <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
 
                                             <td>
                                                 <center>
@@ -272,18 +275,21 @@ const AdminScreen = (params) => {
                                         <div className="f-flex" style={{ justifyContent: 'space-between' }}>
 
                                             <TextField label="Email" variant={'outlined'} className="w-40" disabled={false} onChange={(e)=>setEmail(e.target.value)} value={email} />
+                                            <FormControl label="status" className="w-40">
+                        <InputLabel id="demo-simple-select-label">Status</InputLabel>
 
                                             <Select
                                                 value={isActive === null ? detailData.isActive ? detailData.isActive : false : isActive}
                                                 label="status"
                                                 id="seleted"
                                                 variant='outlined'
-                                                className="w-40"
+                                                className="w-f"
                                                 onChange={(e) => setIsActive(e.target.value)}
                                             >
                                                 <MenuItem value={true}>Active</MenuItem>
                                                 <MenuItem value={false}>InActive</MenuItem>
                                             </Select>
+                                            </FormControl>
 
                                         </div>
                                         <br /><br />

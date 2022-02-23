@@ -1,7 +1,7 @@
 import ls from 'local-storage'
 import moment from 'moment'
 export const checkSigned=()=>{
-    if(ls('accessToken') && ls('refreshToken') && ls('userId')){
+    if(ls('accessToken') && ls('refreshToken') && ls('userId') && ls("rememberme")){
         return true;
     }else{
         return false;
@@ -71,13 +71,23 @@ export const searchString=(key,givenArray)=>{
     return batch;  
   }
   export const checkInputs=(...inputs)=>{
-      let bool=false;
+      let bool=true;
       for(let val of inputs){
-          if(val && val?val.trim().length>0:false){
-
+          console.log("theval",val)
+          val=val.toString();
+          if(val){
+          if(val.toString().trim().length>0){
+                
           }else{
+              console.log("iwasheree",val)
+              bool=false;
+          }}else{
+            console.log("iwashere",val)
               bool=false;
           }
+      }
+      if(bool===false){
+          console.log("valuesss")
       }
       return bool;
   }
