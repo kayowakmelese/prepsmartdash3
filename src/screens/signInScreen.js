@@ -120,7 +120,7 @@ const SignInScreen=(params)=>{
             </center>
 </div>            
        </div>
-       <p style={{color:colors.primary10,cursor:'pointer'}} onClick={()=>setScreen(2)} className="padding">Sign in</p>
+       {/* <p style={{color:colors.primary10,cursor:'pointer'}} onClick={()=>setScreen(2)} className="padding">Sign in</p> */}
            </center>
        
     </div>

@@ -229,7 +229,7 @@ const UserScreen=(params)=>{
                             <Typography color={dat.isActive?'green':'orangered'} variant={'p'} sx={{color:dat.isActive?'green !important':'orangered !important',borderColor:dat.isActive?'green':'red',borderWidth:1}} >{dat.isActive?"Active":"Deactive"}</Typography>
             </p>
                          </td>
-                         <td className="padding">{moment(dat.createdDate).format("MMM DD HH:MM")}</td>
+                         <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
                         
                          <td>
                            <center>
@@ -256,7 +256,7 @@ const UserScreen=(params)=>{
                             <Typography color={dat.isActive?'green':'orangered'} variant={'p'} sx={{color:dat.isActive?'green !important':'orangered !important',borderColor:dat.isActive?'green':'red',borderWidth:1}} >{dat.isActive?"Active":"Deactive"}</Typography>
             </p>
                          </td>
-                         <td className="padding">{moment(dat.createdDate).format("MMM DD HH:MM")}</td>
+                         <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
                         
                          <td>
                            <center>

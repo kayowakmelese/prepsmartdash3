@@ -56,7 +56,7 @@ const SexTypeScreen=(params)=>{
                             <Typography color={dat.isActive?'green':'orangered'} variant={'p'} sx={{color:dat.isActive?'green !important':'orangered !important',borderColor:dat.isOnCycle?'green':'red',borderWidth:1}} >{dat.isActive?"Active":"Deactive"}</Typography>
             </p>
                          </td>
-            <td>{moment(dat.createdDate).format("MMMM DD ,HH:MM a")}</td>
+            <td>{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
             <td className="f-flex padding" style={{alignSelf:'center',justifyContent:'center'}}>
                 <IconButton onClick={()=>{params.changeModalState(true,1,2,{value:dat.en,es:dat.es,id:dat.id,status:dat.status})}}><img src={`${process.env.PUBLIC_URL}/icons/edit.svg`} height={20} width={20}/></IconButton>
 

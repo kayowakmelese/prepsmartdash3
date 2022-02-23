@@ -12,7 +12,7 @@ import { checkInputs, checkSigned, checkSignedFromReducer, cleanBatch, validateI
 import { connect } from 'react-redux';
 import { addBatchSecurityQuestion, addBatchSexType,loadAllUsers,deleteDoseMessage,editDoseMessage,addDoseMessage,promoteUser,dispatchSigned,createAdmin,logout, addSecurityQuestions,generateCodes,editSecurityQuestion, addSexType, setDataReducer, editSexType,setModalReducer,deleteSexType,deleteSecurityQuestion, deleteInvitationCode } from '../action';
 import { CircularProgress } from '@mui/material';
-import { Box, Button, InputAdornment, Modal, Tab, Tabs, TextField,IconButton,Typography,Select,MenuItem,Menu} from '@material-ui/core';
+import { Box, Button, InputAdornment, Modal, Tab, Tabs,InputLabel,FormControl, TextField,IconButton,Typography,Select,MenuItem,Menu} from '@material-ui/core';
 import DeleteScreen from '../components/deletecomponent'
 import {DesktopDatePicker} from '@mui/lab';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -371,38 +371,34 @@ const DashboardScreen=(params)=>{
                        batch.map((dat,i)=>{
                            let val=params.progress===2?batch[i].value != null?batch[i].value:params.someValue.value:batch[i].value;
                            let val2=params.progress===2?batch[i].es != null?batch[i].es:params.someValue.es:batch[i].es;
+                           batch[0].value=val;
+                           batch[0].es=val2;
                            console.log("valueee",val)
                            {/* setChanged(val) */}
                            return ( <div><TextField label="Name(en)" className="w-f" variant="outlined" value={!changed?val:null} onChange={(e)=>{let xx=batch;xx[i].value=e.target.value;setBatch(xx);setChanged(e.target.value);console.log("batch"+batch[i].value!=null,JSON.stringify(batch)+params.progress)}}/>
                                  <br/><br/>
                                  <TextField label="Name(es)" className="w-f" variant="outlined" value={!changed?val2:null} onChange={(e)=>{let xx=batch;xx[i].es=e.target.value;setBatch(xx);setChanged(e.target.value);console.log("batch"+batch[i].es!=null,JSON.stringify(batch)+params.progress)}}/>
                                  <br/><br/>
+                                 <FormControl variant={'outlined'} className="w-f">
+                        <InputLabel id="add-sex-type-label" className="padding">Status</InputLabel>
+
                                  <Select 
                 value={isActive}
-                label="status"
                 id="seleted"
-                variant='outlined'
                 className="w-f"
                 onChange={(e)=>setIsActive(e.target.value)}
   >
+
         <MenuItem value={true}>Active</MenuItem>
         <MenuItem value={false}>InActive</MenuItem>
   </Select>
+  </FormControl>
   <br/><br/>
                                  </div>)
                        })
                    }
                   
-                  {/* {
-                      params.progress===1?
-                     
-                      <Button onClick={()=>{
-                          let cc=count+1;
-                          setCount(cc);
-                          }}>Add more</Button>:null
-                  } */}
-               {/* <TextField variant="outlined" label="Sex type name" className="w-f margin-input" value={sexType} onChange={(e)=>setSexType(e.target.value)}/> */}
-               <br/><br/>
+             <br/><br/>
                <div className="f-flex m-top" style={{ justifyContent: 'right' }}>
                     <Button variant={'text'} className="mrit" onClick={() => params.changeModalState(false,1,1,null)}  style={{marginRight:'5%', padding: '0% 10%',color:colors.primary10 }}>Cancel</Button>
                     <button variant={'contained'} onClick={()=>  
@@ -412,9 +408,7 @@ const DashboardScreen=(params)=>{
                        params.isLoading?<CircularProgress size={15} sx={{color:'white'}}/>:params.progress===1?"ADD":"SAVE"
                     }</button>
                 </div>
-           </div>:<DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>{
-               
-               params.deleteSecurityQuestion(id)}} desc={"Are you sure you want to delete this security question?"}/>
+           </div>:null
         :modalScreen===6? 
            <DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>params.deleteSexType(params.someValue?params.someValue.id:null)} desc={"Are you sure you want to delete this sex type?"}/>:
            modalScreen===3?
@@ -449,23 +443,29 @@ const DashboardScreen=(params)=>{
                        batch.map((dat,i)=>{
                         let val=params.progress===2?batch[i].value != null?batch[i].value:params.someValue.value:batch[i].value;
                         let val2=params.progress===2?batch[i].es != null?batch[i].es:params.someValue.es:batch[i].es;
-                           
+                           batch[0].value=val;
+                           batch[0].es=val2;
+
                            console.log("valueee",val)
                            {/* setChanged(val) */}
                            return ( <div><TextField label="Description(en)" className="w-f" variant="outlined" value={!changed?val:null} onChange={(e)=>{let xx=batch;xx[i].value=e.target.value;setBatch(xx);setChanged(e.target.value);console.log("batch"+batch[i].value!=null,JSON.stringify(batch)+params.progress)}}/>
                                  <br/><br/>
                                  <TextField label="Description(es)" className="w-f" variant="outlined" value={!changed?val2:null} onChange={(e)=>{let xx=batch;xx[i].es=e.target.value;setBatch(xx);setChanged(e.target.value);console.log("batch"+batch[i].es!=null,JSON.stringify(batch)+params.progress)}}/>
                                  <br/><br/>
+                                 <FormControl label="status" className="w-f" variant='outlined'>
+                        <InputLabel id="demo-simple-select-label" 
+                >Status</InputLabel>
+
                                  <Select 
                 value={isActive}
                 label="status"
-                variant='outlined'
                 className="w-f"
                 id="securityquestion"
                 onChange={(e)=>setIsActive(e.target.value)}>
         <MenuItem value={true}>Active</MenuItem>
         <MenuItem value={false}>InActive</MenuItem>
   </Select>
+  </FormControl>
                 <br/><br/>
                                  </div>)
                            {/* return ( <div><TextField label="Security Question" className="w-f" variant="outlined" value={batch.length>0?batch[i].value:securityQuestionValue} onChange={(e)=>{batch.length>0?batch[i].value=e.target.value:setSecurityQuestionValue(e.target.value)}}/>
@@ -485,7 +485,8 @@ const DashboardScreen=(params)=>{
                     <button onClick={()=>
         params.changeModalState(false,1,1,null)} className="mrit border"  style={{marginRight:'5%', padding: '0% 10%',color:colors.primary10 }}>Cancel</button>
                     <button style={{ backgroundColor: colors.primary10,color:'white', padding: '3% 10%' }} onClick={() => {
-                        batch.length >0?params.progress===1?params.addBatchSecurityQuestion(batch):params.someValue.value===securityQuestionValue?params.setMessage("No changes made"):params.editSecurityQuestion(batch[0].value,batch[0].es,isActive,params.someValue?params.someValue.id:null):params.setMessage("add security question to continue")
+                        console.log("theinput",JSON.stringify(batch[0]));
+                        batch.length>0?params.progress===1?params.addBatchSecurityQuestion(batch):params.someValue.value===securityQuestionValue?params.setMessage("No changes made"):params.editSecurityQuestion(batch[0].value,batch[0].es,isActive,params.someValue?params.someValue.id:null):params.setMessage(params.progress===1?"Add ":"Edit"+" security question to continue")
                     }}>
                         {params.isLoading?
                         <CircularProgress size={15} sx={{color:'white'}}/>:params.progress===1?"Done":"Save"}
@@ -608,23 +609,28 @@ const DashboardScreen=(params)=>{
                        batch.map((dat,i)=>{
                         let val=params.progress===2?batch[i].value != null?batch[i].value:params.someValue.value:batch[i].value;
                         let val2=params.progress===2?batch[i].es != null?batch[i].es:params.someValue.es:batch[i].es;
-                           
+                           batch[i].value=val;
+                           batch[i].es=val2;
                            console.log("valueee",val)
                            {/* setChanged(val) */}
                            return ( <div><TextField label="Description(en)" className="w-f" variant="outlined" value={!changed?val:null} onChange={(e)=>{let xx=batch;xx[i].value=e.target.value;setBatch(xx);setChanged(e.target.value);console.log("batch"+batch[i].value!=null,JSON.stringify(batch)+params.progress)}}/>
                                  <br/><br/>
                                  <TextField label="Description(es)" className="w-f" variant="outlined" value={!changed?val2:null} onChange={(e)=>{let xx=batch;xx[i].es=e.target.value;setBatch(xx);setChanged(e.target.value);console.log("batch"+batch[i].es!=null,JSON.stringify(batch)+params.progress)}}/>
                                  <br/><br/>
+                                 <FormControl label="status" className="w-f" variant='outlined'>
+                        <InputLabel id="demo-simple-select-label" 
+                >Status</InputLabel>
+
                                  <Select 
                 value={isActive}
                 label="status"
-                variant='outlined'
                 className="w-f"
                 id="dosemessage"
                 onChange={(e)=>setIsActive(e.target.value)}>
         <MenuItem value={true}>Active</MenuItem>
         <MenuItem value={false}>InActive</MenuItem>
   </Select>
+  </FormControl>
                 <br/><br/>
                                  </div>)
                           
@@ -651,7 +657,9 @@ const DashboardScreen=(params)=>{
               
            </div>:modalScreen===11?
            <DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>params.deleteDoseMessage(id)} desc={"Are you sure you want to delete this dose message?"}/>
-:
+:modalScreen===12?<DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>{
+               
+    params.deleteSecurityQuestion(id)}} desc={"Are you sure you want to delete this security question?"}/>:
            <DeleteScreen isLoading={params.isLoading} cancel={()=>params.changeModalState(false,1,1,null)} actions={()=>params.deleteSecurityQuestion(id)} desc={"Are you sure you want to delete this security question?"}/>
 
           
@@ -689,7 +697,7 @@ const mapDispatchTopProps=(dispatch)=>{
         deleteSexType:(id)=>dispatch(deleteSexType(id)),
         deleteSecurityQuestion:(id)=>dispatch(deleteSecurityQuestion(id)),
         editSexType:(value,es,status,id)=>checkInputs(value,es,status,id)?dispatch(editSexType(value,es,status,id)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
-        editSecurityQuestion:(value,es,status,id)=>checkInputs(value,es,status,id)?dispatch(editSecurityQuestion(value,es,status,id)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
+        editSecurityQuestion:(value,es,status,id)=>{console.log("theinput",value+es+status+id);checkInputs(value,es,status,id)?dispatch(editSecurityQuestion(value,es,status,id)):dispatch(setDataReducer(false,"Add value in order to continue",null,null))},
         createAdmin:(firstname,lastname,email,password)=>checkInputs(firstname,lastname,email,password)?dispatch(createAdmin(firstname,lastname,email,password)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
         generateCode:(numer,date)=>checkInputs(numer)?dispatch(generateCodes(numer,date)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
         deleteInvitation:(id)=>dispatch(deleteInvitationCode(id)),

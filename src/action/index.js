@@ -59,13 +59,13 @@ export const signIn=(email,password,rememberme)=>{
         dispatch(setUserInformation(true,null,null,null))
         axios.post(`https://${IP}/api/admin/signIn`,params).then((data)=>{
             if(data.data){
-                if(rememberme){
                     ls("accessToken",data.data.accessToken);
                     ls("refreshToken",data.data.refreshToken);
                     ls("userId",data.data.userId);
                     ls("data",data.data)
+                    ls("rememberme",rememberme)
                     
-                }
+                
                 console.log("response",data.data)
                 dispatch(setUserInformation(false,null,{type:"SIGNIN",message:"authentication successful!"},data.data))
             }
@@ -595,7 +595,6 @@ export const editSecurityQuestion=(value,es,status,id)=>{
     return dispatch=>{
         let params={
             id:id,
-            
             isActive:status
         }
         if(es){
@@ -670,7 +669,8 @@ export const editSexType=(value,es,status,id)=>{
         let params={
             id:id,
             en:value,
-            es:es
+            es:es,
+            isActive:status
         }
         console.log("params",params)
         dispatch(setReducer(true,null,null,null))

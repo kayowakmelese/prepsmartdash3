@@ -110,14 +110,14 @@ const EncounterScreen=(params)=>{
              <LocalizationProvider dateAdapter={DateAdapter}>
               <DesktopDatePicker
           label="minimum date"
-          inputFormat="MM/dd/yyyy"
+          inputFormat="MM/DD/YYYY"
           value={minDate}
           onChange={setMinDate}
           renderInput={(params) => <TextField {...params} />}/>
 
            <DesktopDatePicker
           label="maximum date"
-          inputFormat="MM/dd/yyyy"
+          inputFormat="MM/DD/YYYY"
           value={maxDate}
           onChange={setMaxDate}
           renderInput={(params) => <TextField {...params} />}
@@ -193,7 +193,7 @@ const EncounterScreen=(params)=>{
                             <Typography color={dat.isActive?'green':'orangered'} variant={'p'} sx={{color:dat.isActive?'green !important':'orangered !important',borderColor:dat.isActive?'green':'red',borderWidth:1}} >{dat.isActive?"Active":"Deactive"}</Typography>
             </p>
                          </td>
-                         <td className="padding">{moment(dat.createdDate).format("MMM DD HH:MM")}</td>
+                         <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
                         
                          <td>
                            <center>
@@ -244,10 +244,10 @@ const EncounterScreen=(params)=>{
                         <th className="w-5">Action</th>
                     </tr>
                    {
-                    encounters.map((dat,i)=>{
+                    encounters.reverse().map((dat,i)=>{
                        return  <tr className="tr-hover" style={{cursor:'pointer'}} >
-                    <td className="padding">1</td>
-                    <td className="padding">{moment(dat.createdDate).format("MM/DD/YYYY")}</td>
+                    <td className="padding">{i+1}</td>
+                    <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
                      <td className="f-flex padding">
                      {
                        dat.sexType.map((da,i)=>{
