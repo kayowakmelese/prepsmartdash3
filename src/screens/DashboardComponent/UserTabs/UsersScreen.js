@@ -161,14 +161,15 @@ const UserScreen=(params)=>{
           </Typography>
           <div className="f-flex " style={{justifyContent:'space-between'}}>
             <TextField label="search" placeholder="search" variant='outlined' value={search} onChange={(e)=>setSearch(e.target.value)} className='w-30'/>
-            <div className="f-flex w-40 " style={{justifyContent:'space-between',alignContent:'center'}}>
+            <div className="f-flex w-50 " style={{justifyContent:'space-between',alignContent:'center'}}>
+              <div className="f-flex" style={{justifyContent:'space-between',alignContent:'center'}}>
               <Typography variant="p" style={{fontSize:15,alignSelf:'center',textAlign:'center'}} className="w-30">Created at</Typography>
              <LocalizationProvider dateAdapter={DateAdapter}>
               <DesktopDatePicker
           label="minimum date"
           inputFormat="MM/DD/YYYY"
           
-          className="border"
+          className="border w-40"
           value={minDate}
           onChange={setMinDate}
           renderInput={(params) => <TextField {...params} />}/>
@@ -177,11 +178,12 @@ const UserScreen=(params)=>{
           label="maximum date"
           inputFormat="MM/DD/YYYY"
           value={maxDate}
-          className="border"
+          className="border w-40"
           onChange={setMaxDate}
           renderInput={(params) => <TextField {...params} />}
        />
        </LocalizationProvider>
+       </div>
             </div>
             <div className="f-flex w-20 " style={{justifyContent:'center',alignContent:'center'}}>
               <Typography variant="p" style={{fontSize:15,alignSelf:'center'}} className="padding" >Status</Typography>

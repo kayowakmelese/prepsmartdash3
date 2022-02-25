@@ -51,7 +51,7 @@ const AdminScreen = (params) => {
     React.useEffect(() => {
         if (params.success) {
             if (params.success.type === "ALLADMINS") {
-                setAllData(params.data)
+                setAllData(params.data.reverse())
                 setPagerCount(parseInt(params.data.length/10))
 
             } else if (params.success.type === "USERENCOUNTER") {
@@ -128,14 +128,15 @@ const AdminScreen = (params) => {
                         <br />
                         <div className="f-flex " style={{justifyContent:'space-between'}}>
             <TextField label="search" value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="search" variant='outlined' className='w-30'/>
-            <div className="f-flex w-40 " style={{justifyContent:'space-between',alignContent:'center'}}>
+            <div className="f-flex w-50 " style={{justifyContent:'space-between',alignContent:'center'}}>
+            <div className="f-flex" style={{justifyContent:'space-between',alignContent:'center'}}>
               <Typography variant="p" style={{fontSize:15,alignSelf:'center',textAlign:'center'}} className="w-30">Created at</Typography>
              <LocalizationProvider dateAdapter={DateAdapter}>
               <DesktopDatePicker
           label="minimum date"
           inputFormat="MM/DD/YYYY"
           
-          className="border"
+          className="border w-40"
           value={minDate}
           onChange={setMinDate}
           renderInput={(params) => <TextField {...params} />}/>
@@ -144,22 +145,24 @@ const AdminScreen = (params) => {
           label="maximum date"
           inputFormat="MM/DD/YYYY"
           value={maxDate}
-          className="border"
+          className="border w-40"
           onChange={setMaxDate}
           renderInput={(params) => <TextField {...params} />}
        />
        </LocalizationProvider>
+       </div>
             </div>
             <div className="f-flex w-20 " style={{justifyContent:'center',alignContent:'center'}}>
-            <FormControl label="status" className="w-f">
-                        <InputLabel id="demo-simple-select-label">Status</InputLabel>
+              <Typography variant="p" style={{fontSize:15,alignSelf:'center'}} className="padding" >Status</Typography>
+              <FormControl className="w-50">
 
               <Select className="w-f"
-                labelId="demo-simple-select-label"
+                labelId="demo-simple-select-labelb"
                 value={status}
-                label="status"
+                label="Status"
                 onChange={(e)=>setStatus(e.target.value)}
   >
+    
         <MenuItem value={"All"}>All</MenuItem>
         <MenuItem value={"true"}>Active</MenuItem>
         <MenuItem value={"false"}>Deactive</MenuItem>

@@ -105,12 +105,15 @@ const EncounterScreen=(params)=>{
           </Typography>
           <div className="f-flex " style={{justifyContent:'space-between'}}>
             <TextField label="search" value={search} onChange={(e)=>setSearch(e.target.value)} placeholder="search" variant='outlined' className='w-30'/>
-            <div className="f-flex w-40 " style={{justifyContent:'space-between',alignContent:'center'}}>
+            <div className="f-flex w-50 " style={{justifyContent:'space-between',alignContent:'center'}}>
+            <div className="f-flex" style={{justifyContent:'space-between',alignContent:'center'}}>
               <Typography variant="p" style={{fontSize:15,alignSelf:'center',textAlign:'center'}} className="w-30">Created at</Typography>
              <LocalizationProvider dateAdapter={DateAdapter}>
               <DesktopDatePicker
           label="minimum date"
           inputFormat="MM/DD/YYYY"
+          
+          className="border w-40"
           value={minDate}
           onChange={setMinDate}
           renderInput={(params) => <TextField {...params} />}/>
@@ -119,10 +122,12 @@ const EncounterScreen=(params)=>{
           label="maximum date"
           inputFormat="MM/DD/YYYY"
           value={maxDate}
+          className="border w-40"
           onChange={setMaxDate}
           renderInput={(params) => <TextField {...params} />}
        />
        </LocalizationProvider>
+       </div>
             </div>
             <div className="f-flex w-20 " style={{justifyContent:'center',alignContent:'center'}}>
               <Typography variant="p" style={{fontSize:15,alignSelf:'center'}} className="padding" >Status</Typography>
@@ -248,10 +253,10 @@ const EncounterScreen=(params)=>{
                        return  <tr className="tr-hover" style={{cursor:'pointer'}} >
                     <td className="padding">{i+1}</td>
                     <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
-                     <td className="f-flex padding">
+                     <td className="padding">
                      {
                        dat.sexType.map((da,i)=>{
-                         return <p>{da.en}</p>
+                         return <span  style={{padding:5,marginRight:5,marginBottom:5,border:'1px solid #adc6ff',backgroundColor:'#f0f5ff',color:'#1d39c4',display:'inline-block'}}>{da.en}</span>
                        })
                      }</td>
                      <td>{dat.comment?dat.comment:"no notes"}</td>
