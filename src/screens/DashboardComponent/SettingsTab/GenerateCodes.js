@@ -66,7 +66,7 @@ const GenerateCodes=(params)=>{
                 </td>
                 <td className="padding">{moment(dat.expiryDate).format('MMM DD YYYY')}</td>
                
-                <td className="padding  ">{dat.updatedDate?moment(dat.updatedDate).format('MMM DD HH:MM'):'--'}</td>
+                <td className="padding  ">{dat.updatedDate?moment(dat.updatedDate).format('MMM DD,YYYY HH:MM'):'--'}</td>
                 <td className="padding">{moment(dat.createdDate).format("MMM DD, YYYY,HH:MM")}</td>
                 <td className="f-flex padding" style={{alignSelf:'center',justifyContent:'center'}}>
                 <IconButton onClick={()=>{params.changeModalState(true,5,2,{value:dat.invitationCode,expDate:dat.expiryDate})}}>
