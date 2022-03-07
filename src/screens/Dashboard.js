@@ -10,7 +10,7 @@ import SettingScreen from './DashboardComponent/SettingsTab/SettingScreen';
 import NotificationsScreen from './DashboardComponent/NotificationTab/NotificationsScreen'
 import { checkInputs, checkSigned, checkSignedFromReducer, cleanBatch, validateInput } from '../functions/checkSigned'
 import { connect } from 'react-redux';
-import { addBatchSecurityQuestion, addBatchSexType,loadAllUsers,deleteDoseMessage,editDoseMessage,addDoseMessage,promoteUser,dispatchSigned,createAdmin,logout, addSecurityQuestions,generateCodes,editSecurityQuestion, addSexType, setDataReducer, editSexType,setModalReducer,deleteSexType,deleteSecurityQuestion, deleteInvitationCode } from '../action';
+import { addBatchSecurityQuestion, addBatchSexType,loadAllUsers,deleteDoseMessage,editDoseMessage,addDoseMessage,promoteUser,dispatchSigned,createAdmin,logout, addSecurityQuestions,generateCodes,editSecurityQuestion, addSexType, setDataReducer, editSexType,setModalReducer,deleteSexType,deleteSecurityQuestion, deleteInvitationCode, editInvitationCode } from '../action';
 import { CircularProgress } from '@mui/material';
 import { Box, Button, InputAdornment, Modal, Tab, Tabs,InputLabel,FormControl, TextField,IconButton,Typography,Select,MenuItem,Menu} from '@material-ui/core';
 import DeleteScreen from '../components/deletecomponent'
@@ -521,6 +521,7 @@ const DashboardScreen=(params)=>{
     }}>Cancel</Button>
     <button className="" style={{backgroundColor:colors.primary10,color:'white'}} onClick={()=>{
             if(codeNumber.trim().length>0){
+                params.progress===2?params.editInvitationCode(params.someValue?params.someValue.id:null,codeNumber.trim(),expDate):
                 params.generateCode(codeNumber.trim(),expDate)
             }
         }}>
@@ -697,9 +698,11 @@ const mapDispatchTopProps=(dispatch)=>{
         deleteSexType:(id)=>dispatch(deleteSexType(id)),
         deleteSecurityQuestion:(id)=>dispatch(deleteSecurityQuestion(id)),
         editSexType:(value,es,status,id)=>checkInputs(value,es,status,id)?dispatch(editSexType(value,es,status,id)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
+        
+        editInvitationCode:(id,code,date)=>checkInputs(id,code,date)?dispatch(editInvitationCode(id,code,date)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
         editSecurityQuestion:(value,es,status,id)=>{console.log("theinput",value+es+status+id);checkInputs(value,es,status,id)?dispatch(editSecurityQuestion(value,es,status,id)):dispatch(setDataReducer(false,"Add value in order to continue",null,null))},
         createAdmin:(firstname,lastname,email,password)=>checkInputs(firstname,lastname,email,password)?dispatch(createAdmin(firstname,lastname,email,password)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
-        generateCode:(numer,date)=>checkInputs(numer)?dispatch(generateCodes(numer,date)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
+        generateCode:(numer,date)=>checkInputs(numer,date)?dispatch(generateCodes(numer,date)):dispatch(setDataReducer(false,"Add value in order to continue",null,null)),
         deleteInvitation:(id)=>dispatch(deleteInvitationCode(id)),
         logout:()=>dispatch(logout()),
         dispatchers:()=>dispatch(dispatchSigned()),

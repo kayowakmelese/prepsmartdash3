@@ -560,7 +560,7 @@ export const deleteInvitationCode=(id)=>{
         axios.delete(`https://${IP}/api/invitation-code/delete/${id}`,params).then((data)=>{
             if(data.data){
                 console.log("datadata",data.data)
-                dispatch(setReducer(false,null,{type:"DELETECODE",message:"sex type deleted successfully!"},data.data))
+                dispatch(setReducer(false,null,{type:"DELETECODE",message:"invitation code deleted successfully!"},data.data))
                 dispatch(loadGeneratedCodes())
             }else{
             
@@ -613,6 +613,30 @@ export const editSecurityQuestion=(value,es,status,id)=>{
             
             }
             dispatch(loadSecurityQuestions())
+        }).catch((error)=>{
+            dispatch(setReducer(false,handleMessages(error).message?handleMessages(error).message:handleMessages(error).error,null,null))
+     
+        })
+    }
+}
+export const editInvitationCode=(id,value,date)=>{
+    return dispatch=>{
+        let params={
+            invitationCodeId:id,
+            invitationCode:value,
+            expiryDate:date
+        }
+       
+        console.log("paramsd",params)
+        dispatch(setReducer(true,null,null,null))
+        axios.put(`https://${IP}/api/invitation-code/update`,params).then((data)=>{
+            if(data.data){
+                console.log("datadata",data.data)
+                dispatch(setReducer(false,null,{type:"EDITINVITATIONCODE",message:"invitation code updated successfully!"},data.data))
+            }else{
+            
+            }
+            dispatch(loadGeneratedCodes())
         }).catch((error)=>{
             dispatch(setReducer(false,handleMessages(error).message?handleMessages(error).message:handleMessages(error).error,null,null))
      
