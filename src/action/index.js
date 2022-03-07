@@ -137,13 +137,13 @@ export const resetPassword = (email) => {
         axios.post(`https://${IP}/api/auth/forgot-password`, params).then((data) => {
             if (data.data) {
                 console.log("server response", data.data)
-
-                dispatch(setReducer(false,{type:"RESETPASSWORD",message:"password sent to email"}, null, data.data))
+                
+                dispatch(setReducer(false,null,{type:"RESETPASSWORD",message:"password sent to email"}, data.data.message))
             }
         }).catch((e) => {
             console.log("error1", JSON.stringify(e));
             console.log("messsage", handleMessages(e).error);
-            dispatch(setReducer(false, null, handleMessages(e).error, null))
+            dispatch(setReducer(false, handleMessages(e).error,null, null))
         })
     }
 }

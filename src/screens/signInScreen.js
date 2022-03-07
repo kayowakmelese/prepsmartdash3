@@ -40,6 +40,8 @@ const SignInScreen=(params)=>{
     },[])
    
     React.useEffect(()=>{
+        console.log("success1",params.usuccess)
+        console.log("success1",params.uerror)
         if(params.usuccess || params.uerror){
             setShowAlert(true);
         }else{
@@ -47,6 +49,17 @@ const SignInScreen=(params)=>{
         }
         setTimeout(()=>setShowAlert(false),3000);
     },[params.usuccess,params.uerror])
+    React.useEffect(()=>{
+        console.log("success",params.success)
+        console.log("success",params.error)
+        if(params.success || params.error){
+            setShowAlert(true);
+        }else{
+            setShowAlert(false);
+        }
+        setTimeout(()=>setShowAlert(false),30000);
+    },[params.success,params.error])
+    
     return <div className="" style={{marginTop:'10%'}}>
        <center>
        {
@@ -56,12 +69,13 @@ const SignInScreen=(params)=>{
       
        <div className='white w-f padding w-30 padding b-s'>
        <Snackbar  anchorOrigin={{ vertical: 'top',horizontal: 'right'}} open={showAlert}  autoHideDuration={6000}>
-         {params.usuccess? <Alert>{params.usuccess.message}</Alert>:
-         <Alert severity='error'>{params.uerror}</Alert>
+         {(params.usuccess || params.success)? <Alert>{params.usuccess?params.usuccess.message:params.success.message}</Alert>:
+           <Alert severity='error'>{params.uerror?params.uerror:params.error?params.error:null}</Alert>
+        
          }  
        </Snackbar>
        <div className="w-f radius">
-           
+            
             <center>
             {
                 screen===1? <div className='w-f' style={{textAlign:'left'}}>
@@ -79,7 +93,7 @@ const SignInScreen=(params)=>{
            
            <button style={{borderRadius:5,backgroundColor:colors.primary10,padding:15,marginTop:'5%'}} className='w-f' onClick={()=>params.resetEmail(username)}>
                {
-                   params.uisLoading?<CircularProgress size={20} sx={{color:'white'}}/>:<p className='t-b t-w'>Send Password Reset Link</p>
+                   params.isLoading?<CircularProgress size={20} sx={{color:'white'}}/>:<p className='t-b t-w'>Send Password Reset Link</p>
                }
                
            </button>
