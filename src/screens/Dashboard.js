@@ -525,7 +525,7 @@ const DashboardScreen=(params)=>{
             }
         }}>
             {
-                params.isLoading?<CircularProgress size={15} sx={{color:'white'}}/>:"Generate"
+                params.isLoading?<CircularProgress size={15} sx={{color:'white'}}/>:"Save"
             }
         </button>
 </div>
