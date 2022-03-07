@@ -52,11 +52,11 @@ const AdminScreen = (params) => {
         if (params.success) {
             if (params.success.type === "ALLADMINS") {
                 setAllData(params.data.reverse())
-                setPagerCount(parseInt(params.data.length/10))
+                setPagerCount(parseInt(params.data.length/10)+1)
 
             } else if (params.success.type === "USERENCOUNTER") {
                 setEncounters(params.data)
-                setPagerCount(parseInt(params.data.length/10))
+                setPagerCount(parseInt(params.data.length/10)+1)
             }else if(params.success.type==="UPDATEAdmin"){
                 setScreen(1)
             }

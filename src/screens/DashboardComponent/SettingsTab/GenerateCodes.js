@@ -20,7 +20,7 @@ const GenerateCodes=(params)=>{
             if(params.success.type==="INVITATIONCODES"){
                 let dd=params.data.reverse();
                 setData(dd)
-                setPagerCount(parseInt(dd.length/10))
+                setPagerCount(parseInt(dd.length/10)+1)
             }
         }
     },[params.success])

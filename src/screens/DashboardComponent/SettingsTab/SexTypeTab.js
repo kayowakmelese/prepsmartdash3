@@ -20,7 +20,7 @@ const SexTypeScreen=(params)=>{
                 if(params.data){
                     let dd=params.data.reverse();
                     setData(dd)
-                    setPagerCount(parseInt(dd.length/10))
+                    setPagerCount(parseInt(dd.length/10)+1)
                 }
             }
         }
@@ -47,7 +47,7 @@ const SexTypeScreen=(params)=>{
             <th className="w-10">Actions</th>
         </tr>
         {data.map((dat,o)=>{
-                return   o <=page*10 && o >=(page*10)-10?<tr style={{borderBottom:'1px solid #222 !important'}}>
+                return   o <=page*10 && o >=(page*10)-10 ? <tr style={{borderBottom:'1px solid #222 !important'}}>
             <td className="padding">{o+1}</td>
             <td className="padding">{dat.en}</td>
             <td className="padding">{dat.es}</td>

@@ -45,8 +45,9 @@ const EncounterScreen=(params)=>{
     React.useEffect(()=>{
       if(params.success){
         if(params.success.type==="ALLUSERS"){
-              setAllData(params.data)
-              setPagerCount(parseInt(params.data.length/10))
+              setAllData(params.data.reverse())
+              
+              setPagerCount(parseInt(params.data.length/10)+1)
 
               
               

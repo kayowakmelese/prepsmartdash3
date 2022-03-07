@@ -47,12 +47,12 @@ const UserScreen=(params)=>{
       if(params.success){
         if(params.success.type==="ALLUSERS"){
               setAllData(params.data)
-              setPagerCount(parseInt(params.data.length/10))
+              setPagerCount(parseInt(params.data.length/10)+1)
               
         computeActive(status)
         }else if(params.success.type==="USERENCOUNTER"){
           setEncounters(params.data)
-          setPagerCount(parseInt(params.data.length/10))
+          setPagerCount(parseInt(params.data.length/10)+1)
         }else if(params.success.type==="UPDATEUSER"){
           setScreen(1);
         }

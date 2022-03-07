@@ -20,7 +20,7 @@ const DoseMessageScreen=(params)=>{
         if(params.success){
             if(params.success.type==="DOSEMESSAGES"){
                 setData(params.data)
-                setPagerCount(parseInt(params.data.length/10))
+                setPagerCount(parseInt(params.data.length/10)+1)
             }
         }
     },[params.success])
