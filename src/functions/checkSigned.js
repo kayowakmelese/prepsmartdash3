@@ -30,11 +30,15 @@ export const  getTimeFromMins=(mins)=>{
     return moment.utc().hours(h).minutes(m).format("hh:mm A");
 }
 
-export const searchString=(key,givenArray)=>{
+export const searchString=(key,emails,phoneNumber,givenArray)=>{
     let arr=[];
     for(var i=0;i<givenArray.length;i++){
       let bool=true;
+      let bool2=true;
+      let bool3=true;
       let name=null;
+      let email=null;
+      let phone=null;
       for(var j=0;j<key.length;j++){
         name=givenArray[i].firstName+" "+givenArray[i].lastName;
         if(key.toLowerCase().charAt(j)!==name.toLowerCase().charAt(j)){
@@ -42,7 +46,21 @@ export const searchString=(key,givenArray)=>{
         }else{
         }
       }
-      if(bool){
+      for(var j=0;j<emails.length;j++){
+          email=givenArray[i].email
+          if(emails.toLowerCase.charAt(j)!==email.toLowerCase.charAt(j)){
+              bool=false;
+          }else{
+          }
+      }
+      for(var j=0;j<phoneNumber.length;j++){
+        phone=givenArray[i].phoneNumber
+        if(phoneNumber.toLowerCase.charAt(j)!==phone.toLowerCase.charAt(j)){
+            bool=false;
+        }else{
+        }
+    }
+      if(bool || bool2 || bool3){
 
         arr.push(givenArray[i])
       }else{
