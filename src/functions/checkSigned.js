@@ -30,7 +30,7 @@ export const  getTimeFromMins=(mins)=>{
     return moment.utc().hours(h).minutes(m).format("hh:mm A");
 }
 
-export const searchString=(key,emails,phoneNumber,givenArray)=>{
+export const searchString=(key,givenArray)=>{
     let arr=[];
     for(var i=0;i<givenArray.length;i++){
       let bool=true;
