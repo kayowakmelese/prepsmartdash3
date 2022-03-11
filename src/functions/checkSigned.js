@@ -45,21 +45,18 @@ export const searchString=(key,givenArray)=>{
             bool=false;
         }else{
         }
-      }
-      for(var j=0;j<emails.length;j++){
-          email=givenArray[i].email
-          if(emails.toLowerCase.charAt(j)!==email.toLowerCase.charAt(j)){
-              bool=false;
+           email=givenArray[i].email
+          if(key.toLowerCase().charAt(j)!==email.toLowerCase().charAt(j)){
+              bool2=false;
           }else{
           }
-      }
-      for(var j=0;j<phoneNumber.length;j++){
-        phone=givenArray[i].phoneNumber
-        if(phoneNumber.toLowerCase.charAt(j)!==phone.toLowerCase.charAt(j)){
-            bool=false;
+            phone=givenArray[i].phoneNumber
+        if(key.toLowerCase().charAt(j)!==phone.toLowerCase().charAt(j)){
+            bool3=false;
         }else{
         }
-    }
+      }
+     
       if(bool || bool2 || bool3){
 
         arr.push(givenArray[i])
