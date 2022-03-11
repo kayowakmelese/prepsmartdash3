@@ -39,23 +39,27 @@ export const searchString=(key,givenArray)=>{
       let name=null;
       let email=null;
       let phone=null;
-      for(var j=0;j<key.length;j++){
-        name=givenArray[i].firstName+" "+givenArray[i].lastName;
-        if(key.toLowerCase().charAt(j)!==name.toLowerCase().charAt(j)){
-            bool=false;
-        }else{
-        }
-           email=givenArray[i].email
-          if(key.toLowerCase().charAt(j)!==email.toLowerCase().charAt(j)){
-              bool2=false;
-          }else{
+        if(key.trim().length>0){
+          for(var j=0;j<key.length;j++){
+            name=givenArray[i].firstName+" "+givenArray[i].lastName;
+            if(key.toLowerCase().charAt(j)!==name.toLowerCase().charAt(j)){
+                bool=false;
+            }else{
+            }
+               email=givenArray[i].email
+              if(key.toLowerCase().charAt(j)!==email.toLowerCase().charAt(j)){
+                  bool2=false;
+              }else{
+              }
+                phone=givenArray[i].phoneNumber
+            if(key.toLowerCase().charAt(j)!==phone.toLowerCase().charAt(j)){
+                bool3=false;
+            }else{
+            }
           }
-            phone=givenArray[i].phoneNumber
-        if(key.toLowerCase().charAt(j)!==phone.toLowerCase().charAt(j)){
-            bool3=false;
         }else{
+            return givenArray;
         }
-      }
      
       if(bool || bool2 || bool3){
 
