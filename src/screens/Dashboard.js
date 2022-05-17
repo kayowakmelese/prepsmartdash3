@@ -232,7 +232,7 @@ const DashboardScreen=(params)=>{
         <div className='f-flex'>
         <div className='w-20  b-s b-g' style={{position:'fixed',left:0,height:'100%',color:'white',zIndex:2 }}>
         <Typography variant="h5" component="div" className="padding" style={{alignSelf:'center',color:'white',textAlign:'center'}}>
-           <b>Ripe Wipe</b>
+           <b>PrEPsmart</b>
            </Typography>
             <Link to={'user'} onClick={()=>setActive(1)} >
                         <div className=" f-flex" style={active===1?styles.navbarSelected:styles.navbarUnSelected}>
