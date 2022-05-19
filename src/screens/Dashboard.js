@@ -258,14 +258,14 @@ const DashboardScreen=(params)=>{
                 </Typography>
             </div>
             </Link>
-            <Link to={'encounters'} onClick={()=>setActive(4)} >
+            {/* <Link to={'encounters'} onClick={()=>setActive(4)} >
                         <div className=" f-flex" style={active===4?styles.navbarSelected:styles.navbarUnSelected} >
               <FavoriteBorderOutlined className="padding"/>
                 <Typography variant='p' color={'primary'} style={active===4?styles.navbarUnText:styles.navbarText}>
                     Encounters
                 </Typography>
             </div>
-            </Link>
+            </Link> */}
             <Link to={'SecurityQuestion'} onClick={()=>setActive(5)} >
                         <div className=" f-flex" style={active===5?styles.navbarSelected:styles.navbarUnSelected} >
              <GppGoodOutlined className="padding"/>
